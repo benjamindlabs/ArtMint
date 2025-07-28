@@ -3,6 +3,7 @@
  */
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { FiDownload, FiExternalLink, FiCheck, FiAlertCircle, FiRefreshCw } from 'react-icons/fi';
 
 interface MetaMaskGuideProps {
@@ -56,8 +57,8 @@ const MetaMaskGuide: React.FC<MetaMaskGuideProps> = ({ onClose, onRetry }) => {
       description: "Set up your MetaMask wallet by creating a new wallet or importing an existing one",
       action: (
         <div className="text-sm text-gray-600 dark:text-gray-400">
-          <p>• Click "Create a Wallet" for new users</p>
-          <p>• Or "Import Wallet" if you have a seed phrase</p>
+          <p>• Click &quot;Create a Wallet&quot; for new users</p>
+          <p>• Or &quot;Import Wallet&quot; if you have a seed phrase</p>
           <p>• Set a strong password</p>
           <p>• Save your seed phrase securely</p>
         </div>
@@ -71,7 +72,7 @@ const MetaMaskGuide: React.FC<MetaMaskGuideProps> = ({ onClose, onRetry }) => {
         <div className="text-sm text-gray-600 dark:text-gray-400">
           <p>• Open MetaMask extension</p>
           <p>• Click the network dropdown (top center)</p>
-          <p>• Select "Ethereum Mainnet" or "Sepolia Testnet"</p>
+          <p>• Select &quot;Ethereum Mainnet&quot; or &quot;Sepolia Testnet&quot;</p>
           <p>• For testing, use Sepolia testnet</p>
         </div>
       )
@@ -97,9 +98,11 @@ const MetaMaskGuide: React.FC<MetaMaskGuideProps> = ({ onClose, onRetry }) => {
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900/20 rounded-lg flex items-center justify-center mr-4">
-                <img 
-                  src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg" 
-                  alt="MetaMask" 
+                <Image
+                  src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg"
+                  alt="MetaMask"
+                  width={32}
+                  height={32}
                   className="w-8 h-8"
                 />
               </div>
@@ -205,7 +208,7 @@ const MetaMaskGuide: React.FC<MetaMaskGuideProps> = ({ onClose, onRetry }) => {
               Alternative Wallets (Coming Soon)
             </h4>
             <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">
-              While MetaMask is currently required, we're working on supporting additional wallets:
+              While MetaMask is currently required, we&apos;re working on supporting additional wallets:
             </p>
             <div className="grid grid-cols-2 gap-2 text-sm text-gray-500 dark:text-gray-500">
               <div>• WalletConnect</div>

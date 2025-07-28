@@ -249,6 +249,8 @@ const NFTCard = memo<NFTCardProps>(({ nft, viewMode, onLike, onShare }) => {
   );
 });
 
+NFTCard.displayName = 'NFTCard';
+
 // Main NFT Grid Component
 const NFTGrid: React.FC<NFTGridProps> = ({
   nfts,

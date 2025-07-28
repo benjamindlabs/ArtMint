@@ -77,7 +77,7 @@ export default function About() {
                 </div>
                 <h3 className="text-xl font-bold mb-4 dark:text-white">Low Gas Fees</h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  We've optimized our smart contracts to minimize gas fees, making it more affordable 
+                  We&apos;ve optimized our smart contracts to minimize gas fees, making it more affordable
                   for creators and collectors to participate.
                 </p>
               </div>
@@ -110,12 +110,12 @@ export default function About() {
                   {/* Profile Image */}
                   <div className="md:w-1/3">
                     <div className="h-80 md:h-full bg-gradient-to-br from-purple-100 to-indigo-100 dark:from-purple-900/30 dark:to-indigo-900/30 flex items-center justify-center">
-                      <Image
-                        alt="Iboi Benjamin - Founder & Full-Stack Developer"
-                        width={400}
-                        height={400}
-                        className="w-64 h-64 md:w-full md:h-full object-cover rounded-full md:rounded-none"
-                      />
+                      <div className="w-64 h-64 md:w-full md:h-full bg-gradient-to-br from-purple-500 via-indigo-600 to-blue-700 rounded-full md:rounded-none flex items-center justify-center shadow-xl">
+                        <div className="text-white text-5xl md:text-7xl font-bold tracking-wider">
+                          IB
+                        </div>
+                      </div>
+                      
                     </div>
                   </div>
 

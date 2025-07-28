@@ -327,12 +327,12 @@ export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }, 500); // Increased debounce time for better performance
 
     return () => clearTimeout(timer);
-  }, [state.filters, state.currentPage]);
+  }, [state.filters, state.currentPage, search]);
 
   // Initial search on mount
   useEffect(() => {
     search(1);
-  }, []);
+  }, [search]);
 
   const value = {
     ...state,

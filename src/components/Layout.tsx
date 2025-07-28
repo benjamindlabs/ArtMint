@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { FiSearch, FiSun, FiMoon, FiMenu, FiX, FiShare2, FiUser, FiLogOut, FiShield } from 'react-icons/fi';
 import { useAuth } from '../context/AuthContext';
@@ -146,9 +147,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   <button className="flex items-center space-x-1 text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
                     <div className="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
                       {profile?.avatar_url ? (
-                        <img
+                        <Image
                           src={profile.avatar_url}
                           alt="Avatar"
+                          width={32}
+                          height={32}
                           className="w-full h-full object-cover"
                         />
                       ) : (
@@ -265,9 +268,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   <div className="flex-shrink-0">
                     <div className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
                       {profile?.avatar_url ? (
-                        <img
+                        <Image
                           src={profile.avatar_url}
                           alt="Avatar"
+                          width={40}
+                          height={40}
                           className="w-full h-full object-cover"
                         />
                       ) : (
