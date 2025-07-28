@@ -2,7 +2,7 @@
  * Performance utility functions
  */
 
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 // Utility function to measure component render time
 export function measureRenderTime(componentName: string) {
@@ -10,14 +10,14 @@ export function measureRenderTime(componentName: string) {
     const MeasuredComponent = (props: any) => {
       useEffect(() => {
         const startTime = performance.now();
-        
+
         return () => {
           const endTime = performance.now();
           console.log(`⏱️ ${componentName} render time: ${(endTime - startTime).toFixed(2)}ms`);
         };
       });
 
-      return <Component {...props} />;
+      return React.createElement(Component, props);
     };
 
     MeasuredComponent.displayName = `Measured(${componentName})`;

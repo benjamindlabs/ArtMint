@@ -18,8 +18,7 @@ const PerformanceMonitor: React.FC<PerformanceMonitorProps> = ({
   minimized = true
 }) => {
   // Temporarily disabled to fix Fast Refresh issues
-  return null;
-
+  // Always call hooks first, then return early if needed
   const [isVisible, setIsVisible] = useState(false);
   const [isExpanded, setIsExpanded] = useState(!minimized);
   const { metrics, webVitals } = usePerformance();
@@ -31,6 +30,9 @@ const PerformanceMonitor: React.FC<PerformanceMonitorProps> = ({
     const isDevelopment = process.env.NODE_ENV === 'development';
     setIsVisible(isDevelopment || showInProduction);
   }, [showInProduction]);
+
+  // Return null after hooks are called
+  return null;
 
   if (!isVisible) return null;
 

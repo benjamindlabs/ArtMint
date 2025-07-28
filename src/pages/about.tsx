@@ -96,32 +96,76 @@ export default function About() {
             </div>
           </div>
 
-          {/* Team Section */}
+          {/* Developer Section */}
           <div className="mb-20">
-            <h2 className="text-3xl font-bold mb-12 text-center dark:text-white">Meet Our Team</h2>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
-                  <div className="h-48 bg-gray-200 dark:bg-gray-700">
-                    <Image 
-                      src={`https://picsum.photos/id/${29 + i}/400/400`}
-                      alt={`Team Member ${i}`}
-                      width={400}
-                      height={400}
-                      className="w-full h-full object-cover"
-                    />
+            <h2 className="text-3xl font-bold mb-8 text-center dark:text-white">Meet the Developer</h2>
+            <p className="text-lg text-gray-600 dark:text-gray-400 text-center mb-12 max-w-3xl mx-auto">
+              ArtMint is a solo project built from the ground up by a passionate full-stack developer
+              dedicated to creating innovative Web3 solutions and empowering the NFT ecosystem.
+            </p>
+
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
+                <div className="md:flex">
+                  {/* Profile Image */}
+                  <div className="md:w-1/3">
+                    <div className="h-80 md:h-full bg-gradient-to-br from-purple-100 to-indigo-100 dark:from-purple-900/30 dark:to-indigo-900/30 flex items-center justify-center">
+                      <Image
+                        alt="Iboi Benjamin - Founder & Full-Stack Developer"
+                        width={400}
+                        height={400}
+                        className="w-64 h-64 md:w-full md:h-full object-cover rounded-full md:rounded-none"
+                      />
+                    </div>
                   </div>
-                  <div className="p-6">
-                    <h3 className="font-bold text-lg mb-1 dark:text-white">Team Member {i}</h3>
-                    <p className="text-purple-600 dark:text-purple-400 text-sm mb-4">
-                      {i === 1 ? 'Founder & CEO' : i === 2 ? 'CTO' : i === 3 ? 'Head of Design' : 'Marketing Director'}
-                    </p>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm">
-                      With extensive experience in {i === 1 ? 'blockchain and entrepreneurship' : i === 2 ? 'smart contract development' : i === 3 ? 'UI/UX design' : 'digital marketing and community building'}.
-                    </p>
+
+                  {/* Profile Content */}
+                  <div className="md:w-2/3 p-8 md:p-12">
+                    <div className="mb-6">
+                      <h3 className="text-2xl md:text-3xl font-bold mb-2 dark:text-white">Iboi Benjamin</h3>
+                      <p className="text-purple-600 dark:text-purple-400 text-lg font-medium mb-4">
+                        Founder & Software Engineer
+                      </p>
+                      <div className="w-16 h-1 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full"></div>
+                    </div>
+
+                    <div className="space-y-4 text-gray-600 dark:text-gray-400">
+                      <p>
+                        As the sole architect behind ArtMint, I&apos;ve built this comprehensive NFT marketplace
+                        from concept to deployment, handling everything from smart contract development
+                        to frontend design and user experience optimization.
+                      </p>
+
+                      <p>
+                        With expertise spanning blockchain technology, full-stack web development, and
+                        smart contract security, I&apos;ve created a platform that prioritizes both innovation
+                        and user safety in the rapidly evolving Web3 space.
+                      </p>
+
+                      <p>
+                        My passion for decentralized technologies and commitment to empowering digital
+                        creators drives every aspect of ArtMint&apos;s development, ensuring a platform that
+                        truly serves the NFT community.
+                      </p>
+                    </div>
+
+                    {/* Skills/Technologies */}
+                    <div className="mt-8">
+                      <h4 className="text-lg font-semibold mb-4 dark:text-white">Core Technologies</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {['Solidity', 'Next.js', 'TypeScript', 'Ethereum', 'IPFS', 'Web3', 'Smart Contracts', 'React'].map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-sm font-medium"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
-              ))}
+              </div>
             </div>
           </div>
 

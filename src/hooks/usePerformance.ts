@@ -24,34 +24,12 @@ interface WebVitals {
 
 // Performance monitoring hook
 export const usePerformance = () => {
-  // Temporarily disabled to fix Fast Refresh issues
-  const [metrics] = useState<PerformanceMetrics>({
+  const [metrics, setMetrics] = useState<PerformanceMetrics>({
     loadTime: 0,
     renderTime: 0,
     interactionTime: 0
   });
-  const [webVitals] = useState<WebVitals>({
-    CLS: null,
-    FID: null,
-    FCP: null,
-    LCP: null,
-    TTFB: null
-  });
-
-  const measureInteraction = () => () => {};
-
-  return {
-    metrics,
-    webVitals,
-    measureInteraction
-  };
-
-  const [metricsOld, setMetrics] = useState<PerformanceMetrics>({
-    loadTime: 0,
-    renderTime: 0,
-    interactionTime: 0
-  });
-  const [webVitalsOld, setWebVitals] = useState<WebVitals>({
+  const [webVitals, setWebVitals] = useState<WebVitals>({
     CLS: null,
     FID: null,
     FCP: null,
@@ -78,46 +56,50 @@ export const usePerformance = () => {
     // Measure Web Vitals
     const measureWebVitals = () => {
       if (typeof window !== 'undefined' && 'PerformanceObserver' in window) {
-        // Largest Contentful Paint
-        const lcpObserver = new PerformanceObserver((list) => {
-          const entries = list.getEntries();
-          const lastEntry = entries[entries.length - 1] as any;
-          setWebVitals(prev => ({ ...prev, LCP: lastEntry.startTime }));
-        });
-        lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
-
-        // First Input Delay
-        const fidObserver = new PerformanceObserver((list) => {
-          const entries = list.getEntries();
-          entries.forEach((entry: any) => {
-            setWebVitals(prev => ({ ...prev, FID: entry.processingStart - entry.startTime }));
+        try {
+          // Largest Contentful Paint
+          const lcpObserver = new PerformanceObserver((list) => {
+            const entries = list.getEntries();
+            const lastEntry = entries[entries.length - 1] as any;
+            setWebVitals(prev => ({ ...prev, LCP: lastEntry.startTime }));
           });
-        });
-        fidObserver.observe({ entryTypes: ['first-input'] });
+          lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
 
-        // Cumulative Layout Shift
-        const clsObserver = new PerformanceObserver((list) => {
-          let clsValue = 0;
-          const entries = list.getEntries();
-          entries.forEach((entry: any) => {
-            if (!entry.hadRecentInput) {
-              clsValue += entry.value;
-            }
+          // First Input Delay
+          const fidObserver = new PerformanceObserver((list) => {
+            const entries = list.getEntries();
+            entries.forEach((entry: any) => {
+              setWebVitals(prev => ({ ...prev, FID: entry.processingStart - entry.startTime }));
+            });
           });
-          setWebVitals(prev => ({ ...prev, CLS: clsValue }));
-        });
-        clsObserver.observe({ entryTypes: ['layout-shift'] });
+          fidObserver.observe({ entryTypes: ['first-input'] });
 
-        // First Contentful Paint
-        const fcpObserver = new PerformanceObserver((list) => {
-          const entries = list.getEntries();
-          entries.forEach((entry: any) => {
-            if (entry.name === 'first-contentful-paint') {
-              setWebVitals(prev => ({ ...prev, FCP: entry.startTime }));
-            }
+          // Cumulative Layout Shift
+          const clsObserver = new PerformanceObserver((list) => {
+            let clsValue = 0;
+            const entries = list.getEntries();
+            entries.forEach((entry: any) => {
+              if (!entry.hadRecentInput) {
+                clsValue += entry.value;
+              }
+            });
+            setWebVitals(prev => ({ ...prev, CLS: clsValue }));
           });
-        });
-        fcpObserver.observe({ entryTypes: ['paint'] });
+          clsObserver.observe({ entryTypes: ['layout-shift'] });
+
+          // First Contentful Paint
+          const fcpObserver = new PerformanceObserver((list) => {
+            const entries = list.getEntries();
+            entries.forEach((entry: any) => {
+              if (entry.name === 'first-contentful-paint') {
+                setWebVitals(prev => ({ ...prev, FCP: entry.startTime }));
+              }
+            });
+          });
+          fcpObserver.observe({ entryTypes: ['paint'] });
+        } catch (error) {
+          console.warn('Performance Observer not supported:', error);
+        }
       }
     };
 
@@ -159,13 +141,13 @@ export const usePerformance = () => {
 
   }, []);
 
-  const measureInteraction = useCallback((interactionName: string) => {
+  const measureInteraction = useCallback((interactionName: string = 'interaction') => {
     const interactionStart = Date.now();
-    
+
     return () => {
       const interactionEnd = Date.now();
       const duration = interactionEnd - interactionStart;
-      
+
       setMetrics(prev => ({
         ...prev,
         interactionTime: duration

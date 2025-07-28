@@ -18,9 +18,7 @@ export default function PerformanceOptimizer({
   enableLogging = process.env.NODE_ENV === 'development',
   enableOptimizations = true
 }: PerformanceOptimizerProps) {
-  // Temporarily disabled to fix Fast Refresh issues
-  return null;
-
+  // Always call hooks first, then return early if needed
   const router = useRouter();
   const [metrics, setMetrics] = useState<Partial<PerformanceMetrics>>({});
   const navigationStartTime = useRef<number>(0);

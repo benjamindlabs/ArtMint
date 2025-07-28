@@ -31,6 +31,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'cloudflare-ipfs.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'i.ibb.co',
+      },
     ],
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
